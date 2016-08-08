@@ -40,6 +40,14 @@ app.clearMessages = function() {
   $('#chats').children().remove();
 };
 
-app.addMessages = function(message) {
-  $('#chats').append('<div>' + message.text + '</div>');
+app.addMessage = function(message) {
+  $('#chats').append('<div class="message">' + message.text + '</div>');
+};
+
+app.addRoom = function(roomName) {
+  $('#roomSelect').append('<option value=' + roomName + '>' + roomName + '</option>'); 
+  
+  
+  
+  
 };
