@@ -1,17 +1,21 @@
 // YOUR CODE HERE:
 
-var message = {
-  username: 'temp',
-  text: 'test',
-  roomname: 'test'
-};
+
 
 
 var app = {
   server: 'https://api.parse.com/1/classes/messages'
 };
 
-app.init = function() {};
+app.init = function() {
+// what happens when the window loads
+  $(document).ready(
+
+    $('.username').on('click', function () {
+      app.addFriend(this);
+    })
+  );
+};
 
 app.send = function(message) {
   $.ajax({
@@ -40,14 +44,23 @@ app.clearMessages = function() {
   $('#chats').children().remove();
 };
 
-app.addMessage = function(message) {
-  $('#chats').append('<div class="message">' + message.text + '</div>');
+
+var message = {
+  username: 'temp',
+  text: 'test',
+  roomname: 'test'
 };
 
+app.addMessage = function(message) {
+  $('#chats').append('<div class="username">' + message.username + '</div><div class="message">' + message.text + '</div>');
+};
+
+// $('.username').on
+
 app.addRoom = function(roomName) {
-  $('#roomSelect').append('<option value=' + roomName + '>' + roomName + '</option>'); 
-  
-  
-  
-  
+  $('#roomSelect').append('<option value=' + roomName + '>' + roomName + '</option>');   
+};
+
+app.addFriend = function() {
+
 };
