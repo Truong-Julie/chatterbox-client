@@ -37,5 +37,9 @@ app.fetch = function() {
 };
 
 app.clearMessages = function() {
-  $('#chats').children().remove()
+  $('#chats').children().remove();
+};
+
+app.addMessages = function(message) {
+  $('#chats').append('<div>' + message.text + '</div>');
 };
