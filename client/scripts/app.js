@@ -35,3 +35,7 @@ app.send = function(message) {
 app.fetch = function() {
   $.ajax(app.server);
 };
+
+app.clearMessages = function() {
+  $('#chats').children().remove()
+};
