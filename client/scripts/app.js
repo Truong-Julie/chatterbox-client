@@ -13,9 +13,20 @@ app.init = function() {
 
     $('.username').on('click', function () {
       app.addFriend(this);
+    }),
+
+    // $('#send .submit').on('submit', function () {
+    //   app.handleSubmit(this);
+    // })
+
+    $('#send .submit').on('submit', function (event) {
+      console.log('fire', event);
+      app.handleSubmit(event);
+      event.preventDefault();
     })
   );
 };
+
 
 app.send = function(message) {
   $.ajax({
@@ -52,7 +63,7 @@ var message = {
 };
 
 app.addMessage = function(message) {
-  $('#chats').append('<div class="username">' + message.username + '</div><div class="message">' + message.text + '</div>');
+  $('#chats').append('<div class="message">' + '<span class="username">' + message.username + '</span>' + ': ' + message.text + '</div>'); // '</div><div class="message">'
 };
 
 // $('.username').on
@@ -63,4 +74,8 @@ app.addRoom = function(roomName) {
 
 app.addFriend = function() {
 
+};
+
+app.handleSubmit = function() {
+  console.log("handleSubmit");
 };
