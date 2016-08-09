@@ -48,7 +48,7 @@ app.send = function(message) {
     data: JSON.stringify(message),
     contentType: 'application/json',
     success: function (data) {
-      console.log('chatterbox: Message sent' + data);
+      console.log('chatterbox: Message sent', data);
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -58,10 +58,22 @@ app.send = function(message) {
 };
 
 // app.send(message);
+var rawData;
 
 app.fetch = function() {
-  $.ajax(app.server);
+  // $.ajax(app.server);
+  $.get(app.server, function(data) { 
+    rawData = data['results'];
+    _.each(rawData, function(item) {
+      app.addMessage(item);
+    });
+    console.log('inner function', rawData[0]);
+    // data['results'] <-- array of all messages
+    // return data;
+  });
 };
+
+// console.log('rawData Global variable', rawData);
 
 app.clearMessages = function() {
   $('#chats').children().remove();
@@ -94,6 +106,8 @@ app.addFriend = function() {
 
 app.handleSubmit = function(messageText, userName, roomName) {
   var newMessage = new Message(messageText, userName, roomName);
+  console.log(newMessage);
+  app.send(newMessage);
   // make addMessage() <-- add to the DOM
 };
 
