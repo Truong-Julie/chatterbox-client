@@ -7,24 +7,28 @@ var app = {
   server: 'https://api.parse.com/1/classes/messages'
 };
 
+
+
+
+
+
 app.init = function() {
 // what happens when the window loads
-  $(document).ready(
+console.log('app int on load');
+  $('.username').on('click', function () {
+    console.log('username is working');
+    app.addFriend(this);
+  });
 
-    $('.username').on('click', function () {
-      app.addFriend(this);
-    }),
+  // $('#send .submit').on('submit', function () {
+  //   app.handleSubmit(this);
+  // })
 
-    // $('#send .submit').on('submit', function () {
-    //   app.handleSubmit(this);
-    // })
-
-    $('#send .submit').on('submit', function (event) {
-      console.log('fire', event);
-      app.handleSubmit(event);
-      event.preventDefault();
-    })
-  );
+  $('.submit').on('click', function (event) {  // #send .submit
+    console.log('fire');
+    app.handleSubmit(event);
+    // event.preventDefault();
+  });
 };
 
 
@@ -79,3 +83,11 @@ app.addFriend = function() {
 app.handleSubmit = function() {
   console.log("handleSubmit");
 };
+
+
+
+
+
+$(document).ready( function() {
+  app.init();
+});

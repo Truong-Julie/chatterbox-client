@@ -16,17 +16,18 @@
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
       <div>
-        <form id='send' action=''>
-          <div>
+
           <select id='roomSelect'>
             <option value='AddRoom'>Add New Room</option>
           </select>
-          </div>
-          <input type='text' name='messageBox' value='Enter yr message!'></input>
-          <input type='submit' class='submit' value='submit'></input>
+
+        <form> <!-- action="?" method="post" target="_blank" -->
+          <input type='text' name='messageBox' value='Enter yr message'></input>
+          <input id='send' type='button' class='submit' value='submit'></input> <!-- type='button' -->
+          <!-- <div id ='send' type='button' class='submit'>Tester Div</div> -->
         </form>
+
       </div>
-      
     </div>
     <div id="chats"></div>
   </body>
