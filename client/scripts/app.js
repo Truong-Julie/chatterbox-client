@@ -66,6 +66,7 @@ app.fetch = function() {
     rawData = data['results'];
     _.each(rawData, function(item) {
       app.addMessage(item);
+      console.log('item object', item);
     });
     console.log('inner function', rawData[0]);
     // data['results'] <-- array of all messages
@@ -85,6 +86,9 @@ var message = {
   text: 'test',
   roomname: 'test'
 };
+/*
+{createdAt: "2016-08-09T03:04:03.556Z", objectId: "KAHVFZjZ4U", roomname: "Room 9", text: "hello", updatedAt: "2016-08-09T03:04:03.556Z"…}
+*/
 
 app.addMessage = function(message) {
   $('#chats').append('<div class="message">' + '<span class="username">' + message.username + '</span>' + ': ' + message.text + '</div>'); // '</div><div class="message">'
