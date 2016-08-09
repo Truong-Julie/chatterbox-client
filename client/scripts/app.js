@@ -1,6 +1,10 @@
 // YOUR CODE HERE:
 
-
+var Message = function(messageText, userName, roomName) {
+  this.text = messageText;
+  this.username = userName;
+  this.roomname = roomName;
+};
 
 
 var app = {
@@ -21,11 +25,16 @@ app.init = function() {
 
   $('#send .submit').on('click', function (event) {  // #send .submit
     // console.log('Submit clicked: ', event);
-    // console.log(document.getElementById('messageBox').value); 
-    var userMessage = $(":input:odd").val();
-    console.log(userMessage);
-    app.handleSubmit(userMessage);
+    // console.log(document.getElementById('messageBox').value);
+
+    // Grabs user input 
+    var userMessage = $(':input:odd').val();
+    var userName = window.location.search.split('=')[2];
+    var roomName = $(':input:first').val();
+
+    app.handleSubmit(userMessage, userName, roomName);
     // event.preventDefault();
+    // console.log(userMessage);
   });
 
 };
@@ -83,8 +92,9 @@ app.addFriend = function() {
 
 };
 
-app.handleSubmit = function(event) {
-  // console.log(event);
+app.handleSubmit = function(messageText, userName, roomName) {
+  var newMessage = new Message(messageText, userName, roomName);
+  // make addMessage() <-- add to the DOM
 };
 
 
