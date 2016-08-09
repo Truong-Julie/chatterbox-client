@@ -6,6 +6,13 @@ var Message = function(messageText, userName, roomName) {
   this.roomname = roomName;
 };
 
+$.ajaxSetup({
+  dataFilter: function(data) {
+    var data = JSON.parse(data);
+    // put filtering here
+    return JSON.stringify(data);
+  }
+});
 
 var app = {
   server: 'https://api.parse.com/1/classes/messages'
@@ -60,6 +67,7 @@ app.send = function(message) {
 // app.send(message);
 var rawData;
 
+/*********** OG Fetch Function **************/
 app.fetch = function() {
   // $.ajax(app.server);
   $.get(app.server, function(data) { 
@@ -73,8 +81,42 @@ app.fetch = function() {
     // return data;
   });
 };
+/****************** Test Fetch Function ************************/
+// Goal to return text instead of a JSON file
 
-// console.log('rawData Global variable', rawData);
+app.fetch = function() {
+  $.ajax({
+    url: app.server,
+    dataType: 'text',
+    type: 'GET',
+    async: true,
+    statusCode: {
+      404: function (response) {
+        alert(404);
+      },
+      200: function (response) {
+        // filtering
+          //for the block of text if we encounter < replace with 
+          // replace for <, &, >, and 
+          // response.sp
+        // console.log(response);
+
+        var escapedResponse = response.replace(/</gi, '&lt;');
+        escapedResponse = escapedResponse.replace(/>/gi, '&gt;');
+        escapedResponse = escapedResponse.replace(/&/gi, '&amp;');
+        // console.log(response.replace(/results/gi, "resmults"));
+        console.log(escapedResponse);    
+
+
+
+      }
+    },
+    error: function (jqXHR, status, errorThrown) {
+      alert('error');
+    }
+  });
+};
+
 
 app.clearMessages = function() {
   $('#chats').children().remove();
