@@ -7,28 +7,27 @@ var app = {
   server: 'https://api.parse.com/1/classes/messages'
 };
 
-
-
-
-
-
 app.init = function() {
 // what happens when the window loads
-console.log('app int on load');
-  $('.username').on('click', function () {
-    console.log('username is working');
+  // $('.username').on('click', function (data) {
+  //   console.log('Username clicked!');
+  //   app.addFriend(this);
+  // });
+
+  $('body').on('click', '.username', function (data) {
+    console.log('Username clicked!');
     app.addFriend(this);
   });
 
-  // $('#send .submit').on('submit', function () {
-  //   app.handleSubmit(this);
-  // })
-
-  $('.submit').on('click', function (event) {  // #send .submit
-    console.log('fire');
-    app.handleSubmit(event);
+  $('#send .submit').on('click', function (event) {  // #send .submit
+    // console.log('Submit clicked: ', event);
+    // console.log(document.getElementById('messageBox').value); 
+    var userMessage = $(":input:odd").val();
+    console.log(userMessage);
+    app.handleSubmit(userMessage);
     // event.preventDefault();
   });
+
 };
 
 
@@ -68,6 +67,10 @@ var message = {
 
 app.addMessage = function(message) {
   $('#chats').append('<div class="message">' + '<span class="username">' + message.username + '</span>' + ': ' + message.text + '</div>'); // '</div><div class="message">'
+  
+  // $('.username').on('click', function() {
+  //   console.log('Initiated username');
+  // });
 };
 
 // $('.username').on
@@ -80,14 +83,17 @@ app.addFriend = function() {
 
 };
 
-app.handleSubmit = function() {
-  console.log("handleSubmit");
+app.handleSubmit = function(event) {
+  // console.log(event);
 };
 
 
 
 
 
-$(document).ready( function() {
+$(document).ready(function() {
   app.init();
 });
+
+
+// $(document).   ready(app.init.bind(app));
