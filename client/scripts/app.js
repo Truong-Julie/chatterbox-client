@@ -105,10 +105,16 @@ app.fetch = function() {
         escapedResponse = escapedResponse.replace(/>/gi, '&gt;');
         escapedResponse = escapedResponse.replace(/&/gi, '&amp;');
         // console.log(response.replace(/results/gi, "resmults"));
-        console.log(escapedResponse);    
+        // parse escaped repose
+        parsedResponse = JSON.parse(escapedResponse);   
+        // console.log(parsedResponse); 
 
-
-
+        _.each(parsedResponse['results'], function (item) {
+          app.addMessage(item);
+          console.log('item object', item);
+        });
+        // for each item 
+          // call app add message on message
       }
     },
     error: function (jqXHR, status, errorThrown) {
